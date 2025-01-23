@@ -1,4 +1,4 @@
-package dev.creoii;
+package dev.creoii.coursebrowser;
 
 public class Main {
     public static void main(String[] args) {
