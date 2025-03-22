@@ -1,3 +1,133 @@
 {
-
+  "name": "Math",
+  "elements": [
+    {
+      "type": "section",
+      "name": "Addition",
+      "elements": [
+        {
+          "type": "question",
+          "text":  "What is %s + %s?",
+          "values": [
+            [1, 10],
+            [1, 10]
+          ],
+          "answers": [
+            {
+              "text": "%s + %s",
+              "correct": true
+            },
+            {
+              "text": "(%s + %s) - %s",
+              "values": [
+                [0, 3]
+              ]
+            },
+            {
+              "text": "(%s + %s) + %s",
+              "values": [
+                [0, 3]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "name": "Subtraction",
+      "elements": [
+        {
+          "type": "question",
+          "text":  "What is %s - %s?",
+          "values": [
+            [1, 10],
+            [1, 10]
+          ],
+          "answers": [
+            {
+              "text": "%s - %s",
+              "correct": true
+            },
+            {
+              "text": "(%s - %s) - %s",
+              "values": [
+                [0, 3]
+              ]
+            },
+            {
+              "text": "(%s - %s) + %s",
+              "values": [
+                [0, 3]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "name": "Multiplication",
+      "elements": [
+        {
+          "type": "question",
+          "text":  "What is %s * %s?",
+          "values": [
+            [0, 10],
+            [0, 10]
+          ],
+          "answers": [
+            {
+              "text": "%s * %s",
+              "correct": true
+            },
+            {
+              "text": "(%s * %s) - %s",
+              "values": [
+                [0, 8]
+              ]
+            },
+            {
+              "text": "(%s * %s) + %s",
+              "values": [
+                [0, 8]
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "name": "Division",
+      "elements": [
+        {
+          "type": "question",
+          "text":  "What is %s / %s?",
+          "values": [
+            [1, 10],
+            [1, 10]
+          ],
+          "answers": [
+            {
+              "text": "%s / %s",
+              "correct": true
+            },
+            {
+              "text": "(%s / %s) - %s",
+              "values": [
+                [0, 3]
+              ]
+            },
+            {
+              "text": "(%s / %s) + %s",
+              "values": [
+                [0, 3]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

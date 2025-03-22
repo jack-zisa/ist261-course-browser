@@ -1,12 +1,19 @@
 package dev.creoii.coursebrowser;
 
+import dev.creoii.coursebrowser.backend.DataLoader;
+import dev.creoii.coursebrowser.backend.course.Courses;
+import dev.creoii.coursebrowser.backend.quiz.Quiz;
+
 /**
- * package frontend/ is for frontend stuff
- * package backend/ is for backend stuff
- * package api/ is to connect the two
+ * <li>package frontend/ is for frontend stuff</li>
+ * <li>package backend/ is for backend stuff</li>
+ * <li>package api/ is to connect the two</li>
  */
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        DataLoader.load();
+
+        Quiz quiz = new Quiz(Courses.getCourses().getFirst());
+        System.out.println(quiz);
     }
 }
