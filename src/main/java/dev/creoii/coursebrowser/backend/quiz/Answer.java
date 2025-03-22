@@ -24,7 +24,6 @@ public class Answer {
 
     public static Answer fromJson(JsonElement element) {
         JsonObject object = element.getAsJsonObject();
-        boolean correct = object.has("correct") && object.get("correct").getAsBoolean();
 
         List<RangeValue> values = new ArrayList<>();
         if (object.has("values")) {
@@ -33,13 +32,12 @@ public class Answer {
             });
         }
 
-        return new Answer(object.get("text").getAsString(), correct, values, false);
+        return new Answer(object.get("text").getAsString(), false, values, false);
     }
 
     public boolean isCorrect() {
         return correct;
     }
-
 
     public Answer build(List<RangeValue> builtValues) {
         String text = this.text;

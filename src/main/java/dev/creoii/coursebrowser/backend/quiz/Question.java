@@ -18,10 +18,6 @@ public class Question implements QuizElement {
         this.values = values;
         this.answers = answers;
         this.built = built;
-
-        if (answers.stream().noneMatch(Answer::isCorrect)) {
-            throw new IllegalStateException("No correct answers for question: " + text);
-        }
     }
 
     public static Question fromJson(JsonElement element) {
@@ -60,6 +56,7 @@ public class Question implements QuizElement {
             text = String.format(this.text, valuesArray);
         }
         List<Answer> answers = new ArrayList<>(this.answers.stream().map(answer -> answer.build(builtValues)).toList());
+        answers.add(new Answer(this.text, true, new ArrayList<>(), true).build(builtValues));
         Collections.shuffle(answers);
         return new Question(text, builtValues, answers, true);
     }
