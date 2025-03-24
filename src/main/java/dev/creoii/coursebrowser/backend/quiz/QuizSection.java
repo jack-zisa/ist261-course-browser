@@ -2,6 +2,7 @@ package dev.creoii.coursebrowser.backend.quiz;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.creoii.coursebrowser.backend.quiz.question.Question;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,8 @@
-package dev.creoii.coursebrowser.backend.quiz;
+package dev.creoii.coursebrowser.backend.quiz.question;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.creoii.coursebrowser.backend.quiz.QuizElement;
 
 import java.util.ArrayList;
 import java.util.Collections;

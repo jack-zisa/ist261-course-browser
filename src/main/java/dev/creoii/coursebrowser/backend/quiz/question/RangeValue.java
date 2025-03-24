@@ -1,4 +1,4 @@
-package dev.creoii.coursebrowser.backend.quiz;
+package dev.creoii.coursebrowser.backend.quiz.question;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

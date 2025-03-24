@@ -1,4 +1,4 @@
-package dev.creoii.coursebrowser.backend.quiz;
+package dev.creoii.coursebrowser.backend.quiz.question;
 
 import com.ezylang.evalex.EvaluationException;
 import com.ezylang.evalex.Expression;

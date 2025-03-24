@@ -1,4 +1,4 @@
-package dev.creoii.coursebrowser.backend.quiz;
+package dev.creoii.coursebrowser.backend.quiz.question;
 
 public class Response {
     private final Question question;

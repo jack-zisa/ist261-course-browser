@@ -1,6 +1,7 @@
 package dev.creoii.coursebrowser.backend.quiz;
 
 import dev.creoii.coursebrowser.backend.course.Course;
+import dev.creoii.coursebrowser.backend.quiz.question.Question;
 
 import java.util.HashMap;
 import java.util.Map;

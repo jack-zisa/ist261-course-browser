@@ -2,7 +2,7 @@ package dev.creoii.coursebrowser.backend.course;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import dev.creoii.coursebrowser.backend.quiz.Question;
+import dev.creoii.coursebrowser.backend.quiz.question.Question;
 import dev.creoii.coursebrowser.backend.quiz.QuizElement;
 import dev.creoii.coursebrowser.backend.quiz.QuizSection;
 

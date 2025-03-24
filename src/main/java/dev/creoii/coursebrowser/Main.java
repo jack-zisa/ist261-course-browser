@@ -2,7 +2,7 @@ package dev.creoii.coursebrowser;
 
 import dev.creoii.coursebrowser.backend.DataLoader;
 import dev.creoii.coursebrowser.backend.course.Courses;
-import dev.creoii.coursebrowser.backend.quiz.Question;
+import dev.creoii.coursebrowser.backend.quiz.question.Question;
 import dev.creoii.coursebrowser.backend.quiz.Quiz;
 
 import java.util.Scanner;
