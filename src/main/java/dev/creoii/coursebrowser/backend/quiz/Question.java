@@ -12,12 +12,18 @@ public class Question implements QuizElement {
     private final List<RangeValue> values;
     private final List<Answer> answers;
     private final boolean built;
+    /**
+     * Null on any non-built questions
+     */
+    private Answer correctAnswer;
+    private Response response;
 
     public Question(String text, List<RangeValue> values, List<Answer> answers, boolean built) {
         this.text = text;
         this.values = values;
         this.answers = answers;
         this.built = built;
+        response = null;
     }
 
     public static Question fromJson(JsonElement element) {
@@ -36,12 +42,36 @@ public class Question implements QuizElement {
         return new Question(object.get("text").getAsString(), values, answers, false);
     }
 
+    public String getText() {
+        return text;
+    }
+
     public List<RangeValue> getValues() {
         return values;
     }
 
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
     public boolean isBuilt() {
         return built;
+    }
+
+    public void respond(Response response) {
+        this.response = response;
+    }
+
+    public boolean hasResponse() {
+        return response != null;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public Answer getCorrectAnswer() {
+        return correctAnswer;
     }
 
     public Question build() {
@@ -56,9 +86,12 @@ public class Question implements QuizElement {
             text = String.format(this.text, valuesArray);
         }
         List<Answer> answers = new ArrayList<>(this.answers.stream().map(answer -> answer.build(builtValues)).toList());
-        answers.add(new Answer(this.text, true, new ArrayList<>(), true).build(builtValues));
+        Answer correct = new Answer(this.text, true, new ArrayList<>(), true).build(builtValues);
+        answers.add(correct);
         Collections.shuffle(answers);
-        return new Question(text, builtValues, answers, true);
+        Question question = new Question(text, builtValues, answers, true);
+        question.correctAnswer = correctAnswer;
+        return question;
     }
 
     @Override

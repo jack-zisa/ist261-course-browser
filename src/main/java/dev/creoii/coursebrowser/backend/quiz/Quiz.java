@@ -18,6 +18,14 @@ public class Quiz implements QuizElement {
         }
     }
 
+    public Course getCourse() {
+        return course;
+    }
+
+    public Map<Question, Question> getQuestions() {
+        return questions;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(course.getName());

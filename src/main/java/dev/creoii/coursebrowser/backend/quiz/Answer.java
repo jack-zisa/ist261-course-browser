@@ -35,6 +35,10 @@ public class Answer {
         return new Answer(object.get("text").getAsString(), false, values, false);
     }
 
+    public String getText() {
+        return text;
+    }
+
     public boolean isCorrect() {
         return correct;
     }
