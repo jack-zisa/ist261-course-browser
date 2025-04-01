@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class MultipleChoiceQuestion extends Question {
     private final List<Answer> answers;
-    private Answer correctAnswer;
+    private int correctAnswerIndex;
 
     public MultipleChoiceQuestion(String text, List<RangeValue> values, List<Answer> answers, boolean built) {
         super("multiple_choice", text, values, built);
@@ -23,12 +23,12 @@ public class MultipleChoiceQuestion extends Question {
 
     @Override
     public List<Answer> getCorrectAnswers() {
-        return new ArrayList<>(List.of(correctAnswer));
+        return new ArrayList<>(List.of(getAnswers().get(correctAnswerIndex)));
     }
 
     @Override
     public boolean tryAnswer(String attempt) {
-        return Objects.equals(attempt, correctAnswer.getText());
+        return Objects.equals(attempt, getCorrectAnswers().getFirst().getText());
     }
 
     public static MultipleChoiceQuestion fromJson(JsonElement element) {
@@ -53,7 +53,7 @@ public class MultipleChoiceQuestion extends Question {
         answers.add(correct);
 
         MultipleChoiceQuestion question = new MultipleChoiceQuestion(text, builtValues, answers, true);
-        question.correctAnswer = correct;
+        question.correctAnswerIndex = answers.size();
         return question;
     }
 }
