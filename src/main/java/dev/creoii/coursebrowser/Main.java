@@ -2,16 +2,12 @@ package dev.creoii.coursebrowser;
 
 import dev.creoii.coursebrowser.backend.DataLoader;
 import dev.creoii.coursebrowser.backend.course.Courses;
+import dev.creoii.coursebrowser.backend.quiz.question.Answer;
 import dev.creoii.coursebrowser.backend.quiz.question.Question;
 import dev.creoii.coursebrowser.backend.quiz.Quiz;
 
 import java.util.Scanner;
 
-/**
- * <li>package frontend/ is for frontend stuff</li>
- * <li>package backend/ is for backend stuff</li>
- * <li>package api/ is to connect the two</li>
- */
 public class Main {
     public static void main(String[] args) {
         DataLoader.load();
@@ -29,14 +25,7 @@ public class Main {
                 System.out.println((j + 1) + ": " + question.getAnswers().get(j).getText());
             }
 
-            int input = Integer.parseInt(scanner.nextLine()) - 1;
-
-            if (input >= question.getAnswers().size() || input < 0) {
-                System.out.println("Invalid answer.");
-                continue;
-            }
-
-            if (question.getAnswers().get(input).isCorrect()) {
+            if (question.tryAnswer(scanner.nextLine())) {
                 System.out.println("Correct!");
             } else {
                 System.out.println("Incorrect.");

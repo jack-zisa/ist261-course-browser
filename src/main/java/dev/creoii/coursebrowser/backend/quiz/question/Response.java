@@ -12,8 +12,4 @@ public class Response {
     public boolean isAnswered() {
         return answer != null;
     }
-
-    public boolean isCorrect() {
-        return answer == question.getCorrectAnswer();
-    }
 }

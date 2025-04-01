@@ -3,44 +3,43 @@ package dev.creoii.coursebrowser.backend.quiz.question;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.creoii.coursebrowser.backend.quiz.QuizElement;
+import dev.creoii.coursebrowser.backend.util.JsonUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Question implements QuizElement {
+/**
+ * TODO: Abstract out into Multiple Choice, Numerical/Text, Fill-in-the-blank, etc.
+ */
+public abstract class Question implements QuizElement {
+    private final String questionType;
     private final String text;
     private final List<RangeValue> values;
-    private final List<Answer> answers;
     private final boolean built;
     /**
      * Null on any non-built questions
      */
-    private Answer correctAnswer;
     private Response response;
 
-    public Question(String text, List<RangeValue> values, List<Answer> answers, boolean built) {
+    public Question(String questionType, String text, List<RangeValue> values, boolean built) {
+        this.questionType = questionType;
         this.text = text;
         this.values = values;
-        this.answers = answers;
         this.built = built;
         response = null;
     }
 
-    public static Question fromJson(JsonElement element) {
-        JsonObject object = element.getAsJsonObject();
+    public abstract List<Answer> getAnswers();
 
-        List<RangeValue> values = new ArrayList<>();
-        object.getAsJsonArray("values").forEach(element1 -> {
-            values.add(RangeValue.fromJson(element1));
-        });
+    public abstract List<Answer> getCorrectAnswers();
 
-        List<Answer> answers = new ArrayList<>();
-        object.getAsJsonArray("answers").forEach(element1 -> {
-            answers.add(Answer.fromJson(element1));
-        });
+    public abstract Question finishBuild(Question preBuilt, String text, List<RangeValue> builtValues, List<Answer> answers);
 
-        return new Question(object.get("text").getAsString(), values, answers, false);
+    public abstract boolean tryAnswer(String attempt);
+
+    public String getQuestionType() {
+        return questionType;
     }
 
     public String getText() {
@@ -49,10 +48,6 @@ public class Question implements QuizElement {
 
     public List<RangeValue> getValues() {
         return values;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
     }
 
     public boolean isBuilt() {
@@ -71,8 +66,16 @@ public class Question implements QuizElement {
         return response;
     }
 
-    public Answer getCorrectAnswer() {
-        return correctAnswer;
+    public static QuizElement fromJson(JsonElement element) {
+        JsonObject object = element.getAsJsonObject();
+
+        String type = JsonUtils.getString(object, "question_type");
+
+        if ("multiple_choice".equals(type)) {
+            return MultipleChoiceQuestion.fromJson(object);
+        }
+
+        return null;
     }
 
     public Question build() {
@@ -86,19 +89,15 @@ public class Question implements QuizElement {
             }).toArray();
             text = String.format(this.text, valuesArray);
         }
-        List<Answer> answers = new ArrayList<>(this.answers.stream().map(answer -> answer.build(builtValues)).toList());
-        Answer correct = new Answer(this.text, true, new ArrayList<>(), true).build(builtValues);
-        answers.add(correct);
+        List<Answer> answers = new ArrayList<>(this.getAnswers().stream().map(answer -> answer.build(builtValues)).toList());
         Collections.shuffle(answers);
-        Question question = new Question(text, builtValues, answers, true);
-        question.correctAnswer = correctAnswer;
-        return question;
+        return finishBuild(this, text, builtValues, answers);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(text);
-        for (Answer answer : answers) {
+        for (Answer answer : getAnswers()) {
             builder.append("\n  ").append(answer.toString());
         }
         return builder.toString();
