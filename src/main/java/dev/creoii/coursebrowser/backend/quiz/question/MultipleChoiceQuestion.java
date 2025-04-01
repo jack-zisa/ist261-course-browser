@@ -53,7 +53,7 @@ public class MultipleChoiceQuestion extends Question {
         answers.add(correct);
 
         MultipleChoiceQuestion question = new MultipleChoiceQuestion(text, builtValues, answers, true);
-        question.correctAnswerIndex = answers.size();
+        question.correctAnswerIndex = answers.size() - 1;
         return question;
     }
 }
