@@ -66,10 +66,8 @@ public abstract class Question implements QuizElement {
         return response;
     }
 
-    public static QuizElement fromJson(JsonElement element) {
+    public static QuizElement fromJson(JsonElement element, String type) {
         JsonObject object = element.getAsJsonObject();
-
-        String type = JsonUtils.getString(object, "question_type");
 
         if ("multiple_choice".equals(type)) {
             return MultipleChoiceQuestion.fromJson(object);

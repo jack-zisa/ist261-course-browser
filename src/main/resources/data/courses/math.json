@@ -6,8 +6,7 @@
       "name": "Addition",
       "elements": [
         {
-          "type": "question",
-          "question_type": "multiple_choice",
+          "type": "question:multiple_choice",
           "text":  "%s + %s",
           "values": [
             [1, 10],
@@ -35,8 +34,7 @@
       "name": "Subtraction",
       "elements": [
         {
-          "type": "question",
-          "question_type": "multiple_choice",
+          "type": "question:multiple_choice",
           "text":  "%s - %s",
           "values": [
             [1, 10],
@@ -64,8 +62,7 @@
       "name": "Multiplication",
       "elements": [
         {
-          "type": "question",
-          "question_type": "multiple_choice",
+          "type": "question:multiple_choice",
           "text":  "%s * %s",
           "values": [
             [0, 10],
@@ -93,8 +90,7 @@
       "name": "Division",
       "elements": [
         {
-          "type": "question",
-          "question_type": "multiple_choice",
+          "type": "question:multiple_choice",
           "text":  "%s / %s",
           "values": [
             [1, 10],
