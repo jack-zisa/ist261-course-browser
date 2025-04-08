@@ -1,6 +1,7 @@
 package dev.creoii.coursebrowser;
 
 import dev.creoii.coursebrowser.backend.DataLoader;
+import dev.creoii.coursebrowser.backend.DataSaver;
 import dev.creoii.coursebrowser.backend.User;
 import dev.creoii.coursebrowser.backend.course.Course;
 import dev.creoii.coursebrowser.backend.course.Courses;
@@ -49,5 +50,7 @@ public class Main {
                 System.out.println("Incorrect.");
             }
         }
+
+        DataSaver.save(user);
     }
 }

@@ -53,6 +53,10 @@ public class Answer {
             try {
                 Expression expression = new Expression(String.format(this.text, allValues.toArray()));
                 text = expression.evaluate().getStringValue();
+                String[] elements = text.split("\\.");
+                if (elements.length > 1 && elements[1].length() > 2) { // rounding a string number
+                    text = elements[0] + "." + elements[1].substring(0, 2);
+                }
             } catch (ParseException | EvaluationException e) {
                 e.printStackTrace();
             }
