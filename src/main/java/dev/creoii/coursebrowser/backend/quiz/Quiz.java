@@ -9,6 +9,7 @@ import java.util.Map;
 public class Quiz implements QuizElement {
     private final Course course;
     private final Map<Question, Question> questions;
+    private int correctAnswerCount;
 
     public Quiz(Course course) {
         this.course = course;
@@ -25,6 +26,15 @@ public class Quiz implements QuizElement {
 
     public Map<Question, Question> getQuestions() {
         return questions;
+    }
+
+    public void incrementCorrect() {
+        ++correctAnswerCount;
+    }
+
+    public String toScoreString() {
+        double percentage = (correctAnswerCount * 100d) / questions.size();
+        return correctAnswerCount + "/" + questions.size() + " | " + String.format("%.2f", percentage) + "%";
     }
 
     @Override

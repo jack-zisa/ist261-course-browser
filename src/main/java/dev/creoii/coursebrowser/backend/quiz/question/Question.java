@@ -3,7 +3,6 @@ package dev.creoii.coursebrowser.backend.quiz.question;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import dev.creoii.coursebrowser.backend.quiz.QuizElement;
-import dev.creoii.coursebrowser.backend.util.JsonUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -33,10 +33,13 @@ public class SessionManager {
             }
 
             if (question.tryAnswer(scanner.nextLine())) {
+                quiz.incrementCorrect();
                 System.out.println("Correct!");
             } else {
                 System.out.println("Incorrect.");
             }
         }
+
+        System.out.println(quiz.toScoreString());
     }
 }
