@@ -2,8 +2,8 @@ package dev.creoii.coursebrowser.backend;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import dev.creoii.coursebrowser.api.CourseManager;
 import dev.creoii.coursebrowser.backend.course.Course;
-import dev.creoii.coursebrowser.backend.course.Courses;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -50,7 +50,7 @@ public class DataLoader {
 
             switch (dataType) {
                 case "courses" -> {
-                    Courses.registerCourse(Course.fromJson(element));
+                    CourseManager.registerCourse(Course.fromJson(element));
                 }
             }
 
