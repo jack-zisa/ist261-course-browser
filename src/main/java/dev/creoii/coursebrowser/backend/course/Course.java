@@ -9,15 +9,7 @@ import dev.creoii.coursebrowser.backend.quiz.QuizSection;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course {
-    private final String name;
-    private final List<QuizElement> quizElements;
-
-    public Course(String name, List<QuizElement> quizElements) {
-        this.name = name;
-        this.quizElements = quizElements;
-    }
-
+public record Course(String name, String description, double price, List<QuizElement> quizElements) {
     public static Course fromJson(JsonElement element) {
         JsonObject object = element.getAsJsonObject();
 
@@ -27,15 +19,7 @@ public class Course {
             elements.add(QuizElement.fromJson(element1));
         });
 
-        return new Course(object.get("name").getAsString(), elements);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<QuizElement> getQuizElements() {
-        return quizElements;
+        return new Course(object.get("name").getAsString(), object.get("description").getAsString(), object.get("price").getAsDouble(), elements);
     }
 
     public List<Question> getAllQuestions() {
@@ -50,16 +34,9 @@ public class Course {
         return questions;
     }
 
+
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder(getName() + "\n  elements:\n");
-        for (QuizElement quizElement : getQuizElements()) {
-            if (quizElement instanceof Question question) {
-                stringBuilder.append(question);
-            } else if (quizElement instanceof QuizSection section) {
-                stringBuilder.append(section);
-            }
-        }
-        return stringBuilder.toString();
+        return name + " - $" + price;
     }
 }

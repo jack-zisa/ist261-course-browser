@@ -1,4 +1,6 @@
-package dev.creoii.coursebrowser.backend.course;
+package dev.creoii.coursebrowser.api;
+
+import dev.creoii.coursebrowser.backend.course.Course;
 
 import java.util.*;
 
@@ -7,6 +9,10 @@ public class CourseList implements Collection<Course> {
 
     public CourseList() {
         this.courses = new ArrayList<>();
+    }
+
+    public Course getFirst() {
+        return courses.getFirst();
     }
 
     @Override

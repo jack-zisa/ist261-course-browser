@@ -1,12 +1,14 @@
 {
-  "name": "Math",
+  "name": "Math 101",
+  "description": "Intro to algebra and geometry",
+  "price": 50,
   "elements": [
     {
       "type": "section",
       "name": "Addition",
       "elements": [
         {
-          "type": "question:multiple_choice",
+          "type": "question:multiple_choice_num",
           "text":  "%s + %s",
           "values": [
             [1, 10],
@@ -34,7 +36,7 @@
       "name": "Subtraction",
       "elements": [
         {
-          "type": "question:multiple_choice",
+          "type": "question:multiple_choice_num",
           "text":  "%s - %s",
           "values": [
             [1, 10],
@@ -62,7 +64,7 @@
       "name": "Multiplication",
       "elements": [
         {
-          "type": "question:multiple_choice",
+          "type": "question:multiple_choice_num",
           "text":  "%s * %s",
           "values": [
             [0, 10],
@@ -90,7 +92,7 @@
       "name": "Division",
       "elements": [
         {
-          "type": "question:multiple_choice",
+          "type": "question:multiple_choice_num",
           "text":  "%s / %s",
           "values": [
             [1, 10],

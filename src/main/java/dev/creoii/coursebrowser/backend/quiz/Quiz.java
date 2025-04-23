@@ -39,7 +39,7 @@ public class Quiz implements QuizElement {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder(course.getName());
+        StringBuilder builder = new StringBuilder(course.name());
         for (Question question : questions.values()) {
             builder.append("\n").append(question.toString());
         }

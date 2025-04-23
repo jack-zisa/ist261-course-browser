@@ -9,11 +9,12 @@ import java.util.Objects;
 
 public class MultipleChoiceQuestion extends Question {
     private final List<Answer> answers;
-    private int correctAnswerIndex;
+    private Answer correctAnswer;
 
-    public MultipleChoiceQuestion(String text, List<RangeValue> values, List<Answer> answers, boolean built) {
-        super("multiple_choice", text, values, built);
+    public MultipleChoiceQuestion(String text, List<Answer> answers, boolean built) {
+        super("multiple_choice", text, new ArrayList<>(), built);
         this.answers = answers;
+        correctAnswer = null;
     }
 
     @Override
@@ -23,7 +24,9 @@ public class MultipleChoiceQuestion extends Question {
 
     @Override
     public List<Answer> getCorrectAnswers() {
-        return new ArrayList<>(List.of(getAnswers().get(correctAnswerIndex)));
+        if (correctAnswer == null)
+            return List.of();
+        return new ArrayList<>(List.of(correctAnswer));
     }
 
     @Override
@@ -34,26 +37,18 @@ public class MultipleChoiceQuestion extends Question {
     public static MultipleChoiceQuestion fromJson(JsonElement element) {
         JsonObject object = element.getAsJsonObject();
 
-        List<RangeValue> values = new ArrayList<>();
-        object.getAsJsonArray("values").forEach(element1 -> {
-            values.add(RangeValue.fromJson(element1));
-        });
-
         List<Answer> answers = new ArrayList<>();
         object.getAsJsonArray("answers").forEach(element1 -> {
             answers.add(Answer.fromJson(element1));
         });
 
-        return new MultipleChoiceQuestion(object.get("text").getAsString(), values, answers, false);
+        return new MultipleChoiceQuestion(object.get("text").getAsString(), answers, false);
     }
 
     @Override
     public Question finishBuild(Question preBuilt, String text, List<RangeValue> builtValues, List<Answer> answers) {
-        Answer correct = new Answer(preBuilt.getText(), true, new ArrayList<>(), true).build(builtValues);
-        answers.add(correct);
-
-        MultipleChoiceQuestion question = new MultipleChoiceQuestion(text, builtValues, answers, true);
-        question.correctAnswerIndex = answers.size() - 1;
+        MultipleChoiceQuestion question = new MultipleChoiceQuestion(text, answers, true);
+        question.correctAnswer = answers.stream().filter(Answer::isCorrect).findFirst().get();
         return question;
     }
 }

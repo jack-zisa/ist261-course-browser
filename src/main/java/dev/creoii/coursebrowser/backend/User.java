@@ -1,7 +1,7 @@
 package dev.creoii.coursebrowser.backend;
 
 import dev.creoii.coursebrowser.backend.course.Course;
-import dev.creoii.coursebrowser.backend.course.CourseList;
+import dev.creoii.coursebrowser.api.CourseList;
 
 import java.util.UUID;
 

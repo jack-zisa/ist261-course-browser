@@ -72,6 +72,10 @@ public abstract class Question implements QuizElement {
             return MultipleChoiceQuestion.fromJson(object);
         }
 
+        if ("multiple_choice_num".equals(type)) {
+            return MultipleChoiceNumQuestion.fromJson(object);
+        }
+
         return null;
     }
 
