@@ -25,6 +25,8 @@ public class cartPage extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        addWindowListener(new WindowCloser());
+
         JCartList = new JList<>();
         totalCostField = new JTextField(10);
         totalCostField.setEditable(false);

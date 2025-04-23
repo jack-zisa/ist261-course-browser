@@ -1,5 +1,7 @@
 package dev.creoii.coursebrowser.backend;
 
+import dev.creoii.coursebrowser.Main;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
@@ -11,8 +13,11 @@ public class DataSaver {
         try {
             Path dataPath = getResourcePath("data/users");
             Path userPath = dataPath.resolve(user.getUuid().toString() + ".json");
-            Files.createFile(userPath);
-            Files.write(userPath, "{}".getBytes());
+
+            if (!Files.exists(userPath))
+                Files.createFile(userPath);
+
+            Files.write(userPath, Main.USER.write().toString().getBytes());
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }

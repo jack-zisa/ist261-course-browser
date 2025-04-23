@@ -23,6 +23,8 @@ public class tabbedshop extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        addWindowListener(new WindowCloser());
+
         courseButtons = new ArrayList<>();
         viewCartButton = new JButton("View Cart");
         homePageButton = new JButton("Home Page");

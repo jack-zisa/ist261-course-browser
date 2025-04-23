@@ -1,7 +1,10 @@
 package dev.creoii.coursebrowser.backend;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import dev.creoii.coursebrowser.Main;
 import dev.creoii.coursebrowser.api.CourseManager;
 import dev.creoii.coursebrowser.backend.course.Course;
 
@@ -51,6 +54,19 @@ public class DataLoader {
             switch (dataType) {
                 case "courses" -> {
                     CourseManager.registerCourse(Course.fromJson(element));
+                }
+                case "users" -> {
+                    if (element.isJsonObject()) {
+                        JsonObject object = (JsonObject) element;
+                        String uuid = object.get("uuid").getAsString();
+
+                        if (uuid.equals(Main.USER.getUuid().toString())) {
+                            JsonArray purchasedCourses = object.getAsJsonArray("purchased_courses");
+                            for (JsonElement courseElement : purchasedCourses) {
+                                Main.USER.purchase(CourseManager.getCourse(courseElement.getAsString()));
+                            }
+                        }
+                    }
                 }
             }
 

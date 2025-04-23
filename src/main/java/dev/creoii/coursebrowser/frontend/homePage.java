@@ -23,6 +23,8 @@ public class homePage extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        addWindowListener(new WindowCloser());
+
         JPortalLabel = new JLabel("Welcome to JPortal", SwingConstants.CENTER);
         mainPanel.add(JPortalLabel, BorderLayout.NORTH);
 

@@ -34,7 +34,6 @@ public record Course(String name, String description, double price, List<QuizEle
         return questions;
     }
 
-
     @Override
     public String toString() {
         return name + " - $" + price;

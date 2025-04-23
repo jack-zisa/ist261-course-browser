@@ -1,5 +1,7 @@
 package dev.creoii.coursebrowser.backend;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import dev.creoii.coursebrowser.backend.course.Course;
 import dev.creoii.coursebrowser.api.CourseList;
 
@@ -9,8 +11,8 @@ public class User {
     private final UUID uuid;
     private final CourseList purchasedCourses;
 
-    public User() {
-        this.uuid = UUID.randomUUID();
+    public User(UUID uuid) {
+        this.uuid = uuid;
         this.purchasedCourses = new CourseList();
     }
 
@@ -26,5 +28,16 @@ public class User {
         if (!purchasedCourses.contains(course)) {
             purchasedCourses.add(course);
         }
+    }
+
+    public JsonObject write() {
+        JsonObject object = new JsonObject();
+        object.addProperty("uuid", uuid.toString());
+
+        JsonArray purchasedCourses = new JsonArray();
+        this.purchasedCourses.forEach(course -> purchasedCourses.add(course.name()));
+
+        object.add("purchased_courses", purchasedCourses);
+        return object;
     }
 }
