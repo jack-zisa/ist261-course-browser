@@ -1,0 +1,23 @@
+{
+  "name": "History 101",
+  "description": "World history foundations",
+  "price": 40,
+  "elements": [
+    {
+      "type": "question:multiple_choice",
+      "text":  "Test Question",
+      "answers": [
+        {
+          "text": "Test Incorrect"
+        },
+        {
+          "text": "Test Incorrect"
+        },
+        {
+          "text": "Test Correct",
+          "correct": true
+        }
+      ]
+    }
+  ]
+}

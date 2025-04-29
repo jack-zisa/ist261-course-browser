@@ -50,8 +50,7 @@ public class ClassWindow extends JFrame {
         if (isCorrect) {
             JOptionPane.showMessageDialog(this, "Correct!");
 
-            currentIndex++;
-            if (currentIndex >= questions.length) {
+            if (++currentIndex >= questions.length) {
                 JOptionPane.showMessageDialog(this, "Quiz complete!");
                 submitButton.setEnabled(false);
                 answerBox.setEnabled(false);

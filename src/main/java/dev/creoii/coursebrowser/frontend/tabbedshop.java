@@ -31,17 +31,20 @@ public class tabbedshop extends JFrame {
 
         CourseManager.getCourses().forEach(course -> {
             JButton button = new JButton("Add " + course.name());
-            button.addActionListener(e -> CourseManager.getCart().add(course));
+
+            if (CourseManager.getCart().contains(course))
+                button.setBackground(Color.GREEN);
+
+            button.addActionListener(e -> {
+                CourseManager.getCart().add(course);
+                button.setBackground(Color.GREEN);
+            });
             courseButtons.add(button);
         });
 
         courseButtons.forEach(MainJp::add);
         MainJp.add(viewCartButton);
         MainJp.add(homePageButton);
-
-        /*historyButton.addActionListener(e -> {
-            CourseManager.cart.add(new Course("History 101", "World history foundations", 40.0));
-        });*/
 
         viewCartButton.addActionListener(e -> {
             new cartPage().setVisible(true);
