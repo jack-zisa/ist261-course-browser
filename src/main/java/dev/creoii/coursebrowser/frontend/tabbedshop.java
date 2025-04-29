@@ -1,6 +1,5 @@
 package dev.creoii.coursebrowser.frontend;
 
-import dev.creoii.coursebrowser.Main;
 import dev.creoii.coursebrowser.api.CourseManager;
 
 import javax.swing.*;
@@ -36,8 +35,13 @@ public class tabbedshop extends JFrame {
                 button.setBackground(Color.GREEN);
 
             button.addActionListener(e -> {
-                CourseManager.getCart().add(course);
-                button.setBackground(Color.GREEN);
+                if (CourseManager.getCart().contains(course)) {
+                    CourseManager.getCart().remove(course);
+                    button.setBackground(null);
+                } else {
+                    CourseManager.getCart().add(course);
+                    button.setBackground(Color.GREEN);
+                }
             });
             courseButtons.add(button);
         });
